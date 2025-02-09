@@ -1,0 +1,85 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode", // Đảm bảo Prettier là formatter mặc định
+  "editor.formatOnSave": true, // Format tự động khi lưu file
+  "editor.formatOnPaste": true, // Format khi dán
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "files.associations": {
+    "*.tsx": "typescriptreact",
+    "*.ts": "typescript"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // Cấu hình cho TypeScript
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // Cấu hình cho TSX/React
+  },
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [80],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off"
+  },
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "dart.flutterSdkPath": "/Users/quocnguyen/Documents/FlutterApp/flutter",
+  "dart.openDevTools": "flutter",
+  "dart.warnWhenEditingFilesOutsideWorkspace": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.accessibilitySupport": "off",
+  "explorer.confirmDelete": false,
+  "files.associations": {
+    "*.htm": "blade",
+    "*.sh": "shellscript",
+    "*.tsx": "typescriptreact"
+  },
+  "prisma.showPrismaDataPlatformNotification": false,
+  "sonarlint.rules": {
+    "php:S100": {
+      "level": "on"
+    },
+    "php:S103": {
+      "level": "off"
+    },
+    "php:S1172": {
+      "level": "off"
+    },
+    "php:S3011": {
+      "level": "off"
+    },
+    "secrets:S6702": {
+      "level": "off"
+    },
+    "typescript:S6582": {
+      "level": "off"
+    }
+  },
+  "tabnine.experimentalAutoImports": true,
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1",
+    "Q_NEW_SESSION": "1"
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-docker"
+  },
+  "[dotenv]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[ignore]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": true,
+    "strings": "off"
+  }
+}
