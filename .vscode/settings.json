@@ -6,10 +6,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
   },
-  "files.associations": {
-    "*.tsx": "typescriptreact",
-    "*.ts": "typescript"
-  },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode" // Cấu hình cho TypeScript
   },
@@ -38,7 +34,8 @@
   "files.associations": {
     "*.htm": "blade",
     "*.sh": "shellscript",
-    "*.tsx": "typescriptreact"
+    "*.tsx": "typescriptreact",
+    "*.ts": "typescript"
   },
   "prisma.showPrismaDataPlatformNotification": false,
   "sonarlint.rules": {

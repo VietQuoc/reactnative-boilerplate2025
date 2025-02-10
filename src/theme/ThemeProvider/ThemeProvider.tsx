@@ -33,6 +33,7 @@ import {
 import { generateGutters, staticGutterStyles } from '@/theme/gutters';
 import layout from '@/theme/layout';
 import generateConfig from '@/theme/ThemeProvider/generateConfig';
+import { DefaultTheme } from '@react-navigation/native';
 
 type Context = {
   changeTheme: (variant: Variant) => void;
@@ -107,6 +108,7 @@ function ThemeProvider({ children = false, storage }: Props) {
     return {
       colors: fullConfig.navigationColors,
       dark: variant === 'dark',
+      fonts: DefaultTheme.fonts,
     };
   }, [variant, fullConfig.navigationColors]);
 

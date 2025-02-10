@@ -43,16 +43,14 @@ function Example() {
   return (
     <SafeScreen
       isError={fetchOneUserQuery.isError}
-      onResetError={fetchOneUserQuery.refetch}
-    >
+      onResetError={fetchOneUserQuery.refetch}>
       <ScrollView>
         <View
           style={[
             layout.justifyCenter,
             layout.itemsCenter,
             gutters.marginTop_80,
-          ]}
-        >
+          ]}>
           <View
             style={[layout.relative, backgrounds.gray100, components.circle250]}
           />
@@ -72,8 +70,7 @@ function Example() {
               {t('screen_example.title')}
             </Text>
             <Text
-              style={[fonts.size_16, fonts.gray200, gutters.marginBottom_40]}
-            >
+              style={[fonts.size_16, fonts.gray200, gutters.marginBottom_40]}>
               {t('screen_example.description')}
             </Text>
           </View>
@@ -84,19 +81,16 @@ function Example() {
               layout.justifyBetween,
               layout.fullWidth,
               gutters.marginTop_16,
-            ]}
-          >
+            ]}>
             <Skeleton
               height={64}
               loading={fetchOneUserQuery.isLoading}
               style={{ borderRadius: components.buttonCircle.borderRadius }}
-              width={64}
-            >
+              width={64}>
               <TouchableOpacity
                 onPress={() => setCurrentId(Math.ceil(Math.random() * 9 + 1))}
                 style={[components.buttonCircle, gutters.marginBottom_16]}
-                testID="fetch-user-button"
-              >
+                testID="fetch-user-button">
                 <IconByVariant path={'send'} stroke={colors.purple500} />
               </TouchableOpacity>
             </Skeleton>
@@ -104,16 +98,14 @@ function Example() {
             <TouchableOpacity
               onPress={onChangeTheme}
               style={[components.buttonCircle, gutters.marginBottom_16]}
-              testID="change-theme-button"
-            >
+              testID="change-theme-button">
               <IconByVariant path={'theme'} stroke={colors.purple500} />
             </TouchableOpacity>
 
             <TouchableOpacity
               onPress={toggleLanguage}
               style={[components.buttonCircle, gutters.marginBottom_16]}
-              testID="change-language-button"
-            >
+              testID="change-language-button">
               <IconByVariant path={'language'} stroke={colors.purple500} />
             </TouchableOpacity>
           </View>

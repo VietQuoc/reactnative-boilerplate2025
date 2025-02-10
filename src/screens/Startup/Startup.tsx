@@ -39,8 +39,7 @@ function Startup({ navigation }: RootScreenProps<Paths.Startup>) {
           layout.col,
           layout.itemsCenter,
           layout.justifyCenter,
-        ]}
-      >
+        ]}>
         <AssetByVariant
           path={'tom'}
           resizeMode={'contain'}
