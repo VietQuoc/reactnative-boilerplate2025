@@ -52,8 +52,9 @@ function HomeScreen() {
               {
                 fontWeight: '900',
                 color: '#ee4d2d',
+                fontFamily: 'TheBomb',
               },
-              fonts.size_32,
+              fonts.size_24,
               layout.left10,
             ]}>
             WB
@@ -67,8 +68,8 @@ function HomeScreen() {
         </View>
       </Animated.View>
       <Animated.ScrollView
-        style={styles.scrollView}
-        contentContainerStyle={{ paddingTop: HEADER_HEIGHT }} // để tránh nội dung bị che header
+        style={[styles.scrollView]}
+        contentContainerStyle={{ paddingTop: insets.top + HEADER_HEIGHT }} // để tránh nội dung bị che header
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { y: scrollY } } }],
           { useNativeDriver: true },
@@ -118,6 +119,10 @@ const styles = StyleSheet.create({
     marginLeft: 15,
   },
   scrollView: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
     flex: 1,
   },
   content: {
@@ -125,7 +130,7 @@ const styles = StyleSheet.create({
   },
   contentText: {
     fontSize: 18,
-    marginVertical: 20,
+    // marginVertical: 20,
   },
 });
 
