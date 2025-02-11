@@ -8,6 +8,7 @@ import { useTheme } from '@/theme';
 import { Paths } from '@/navigation/paths';
 
 import { Example, Startup } from '@/screens';
+import HomeScreen from '@/screens/Home/Home';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -20,6 +21,7 @@ function ApplicationNavigator() {
         <Stack.Navigator key={variant} screenOptions={{ headerShown: false }}>
           <Stack.Screen component={Startup} name={Paths.Startup} />
           <Stack.Screen component={Example} name={Paths.Example} />
+          <Stack.Screen component={HomeScreen} name={Paths.Home} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

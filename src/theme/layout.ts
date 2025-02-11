@@ -63,6 +63,9 @@ export default {
   left0: {
     left: 0,
   },
+  left10: {
+    left: 10,
+  },
   relative: {
     position: 'relative',
   },

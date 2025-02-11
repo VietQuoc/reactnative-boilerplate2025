@@ -17,7 +17,9 @@ function Startup({ navigation }: RootScreenProps<Paths.Startup>) {
 
   const { isError, isFetching, isSuccess } = useQuery({
     queryFn: () => {
-      return Promise.resolve(true);
+      return new Promise(resolve => {
+        setTimeout(() => resolve(true), 1000);
+      });
     },
     queryKey: ['startup'],
   });
@@ -26,7 +28,7 @@ function Startup({ navigation }: RootScreenProps<Paths.Startup>) {
     if (isSuccess) {
       navigation.reset({
         index: 0,
-        routes: [{ name: Paths.Example }],
+        routes: [{ name: Paths.Home }],
       });
     }
   }, [isSuccess, navigation]);
@@ -41,7 +43,7 @@ function Startup({ navigation }: RootScreenProps<Paths.Startup>) {
           layout.justifyCenter,
         ]}>
         <AssetByVariant
-          path={'tom'}
+          path={'whitebear'}
           resizeMode={'contain'}
           style={{ height: 300, width: 300 }}
         />

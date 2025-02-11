@@ -51,13 +51,11 @@ function Example() {
             layout.itemsCenter,
             gutters.marginTop_80,
           ]}>
-          <View
-            style={[layout.relative, backgrounds.gray100, components.circle250]}
-          />
+          <View style={[layout.relative, components.circle250]} />
 
           <View style={[layout.absolute, gutters.paddingTop_80]}>
             <AssetByVariant
-              path={'tom'}
+              path={'whitebear'}
               resizeMode={'contain'}
               style={{ height: 300, width: 300 }}
             />
