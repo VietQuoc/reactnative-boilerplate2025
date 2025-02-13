@@ -1,4 +1,3 @@
-import { z } from 'zod';
 import { loginSchema, LoginSchema } from './schema';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 import { AuthServices } from './authService';
@@ -8,9 +7,9 @@ const enum AuthQueryKey {
 }
 
 export const useLoginquery = (input: LoginSchema): UseQueryResult => {
-  const { username, password } = loginSchema.parse(input);
+  const { username, password, enabled } = loginSchema.parse(input);
   return useQuery({
-    enabled: false,
+    enabled: enabled,
     queryFn: () => AuthServices.login(username, password),
     queryKey: [AuthQueryKey.login, username],
   });

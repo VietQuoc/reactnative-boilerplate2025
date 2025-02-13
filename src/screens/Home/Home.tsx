@@ -1,5 +1,6 @@
 import { IconByVariant } from '@/components/atoms';
 import { SafeScreen } from '@/components/templates';
+import { useUser } from '@/hooks';
 import { useTheme } from '@/theme';
 import { ReactElement, useRef } from 'react';
 import { Animated, StatusBar, StyleSheet, Text, View } from 'react-native';
@@ -21,6 +22,7 @@ function HomeScreen() {
     layout,
     variant,
   } = useTheme();
+  const { useFetchCurrentUserQuery } = useUser();
 
   const headerTranslateY = scrollY.interpolate({
     inputRange: [0, 100],
@@ -35,6 +37,8 @@ function HomeScreen() {
   });
   const insets = useSafeAreaInsets();
 
+  const { data, isError } = useFetchCurrentUserQuery();
+  console.log(data, isError, 'end');
   return (
     <SafeScreen>
       <Animated.View

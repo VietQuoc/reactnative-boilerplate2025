@@ -1,25 +1,44 @@
-import { instance } from '@/services/instance';
 import { storage } from '@/App';
-import { isAuthenticatedShema } from './schema';
 import { callGraphql, LOGIN_MUTATION } from '@/services/graphql/graphql';
+import { z } from 'zod';
 
-export const AuthServices = {
-  isAuthenticated: (): boolean | undefined => {
-    return storage.getBoolean('isAuthenticated');
-  },
-  login: async (username: string, password: string): Promise<string> => {
-    const response = await callGraphql(LOGIN_MUTATION, {
+export const authResponseSchema = z.object({
+  access_token: z.string(),
+  refresh_token: z.string(),
+  user: z.any(),
+});
+
+export type AuthResponseSchema = z.infer<typeof authResponseSchema>;
+
+function isAuthenticated(): boolean | undefined {
+  return storage.getBoolean('isAuthenticated');
+}
+async function login(username: string, password: string) {
+  const response = await callGraphql(
+    LOGIN_MUTATION,
+    {
       authInput: {
         password,
         username,
       },
-    });
-    const token = response?.login?.access_token;
-    if (token) {
-      storage.set('isAuthenticated', true);
-      storage.set('userToken', token);
-      storage.set('user', JSON.stringify(response?.login?.user));
-    }
-    return response.login.access_token;
-  },
+    },
+    'login',
+  );
+  saveAuthInfo(response);
+  return response;
+}
+
+function saveAuthInfo(response: any) {
+  const { access_token, refresh_token, user } =
+    authResponseSchema.parse(response);
+  storage.set('isAuthenticated', true);
+  storage.set('accessToken', access_token);
+  storage.set('refreshToken', refresh_token);
+  storage.set('user', JSON.stringify(user));
+}
+
+export const AuthServices = {
+  isAuthenticated,
+  login,
+  saveAuthInfo,
 };

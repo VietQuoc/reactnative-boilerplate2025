@@ -1,0 +1,10 @@
+{
+  "strict": {
+    "text-heading-1-font-size": 36,
+    "text-subtitle-1-font-size": 15,
+    "text-paragraph-1-font-size": 15,
+    "text-caption-1-font-size": 12,
+    "text-label-font-size": 15
+  },
+  "components": {}
+}

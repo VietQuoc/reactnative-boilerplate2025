@@ -12,34 +12,33 @@ import { AssetByVariant } from '@/components/atoms';
 import { SafeScreen } from '@/components/templates';
 import { AuthServices } from '@/hooks/domain/auth/authService';
 import { useLoginquery } from '@/hooks/domain/auth/useAuth';
+import { useUser } from '@/hooks';
+import usePopup from '@/theme/hooks/usePopup';
 
 function Startup({ navigation }: RootScreenProps<Paths.Startup>) {
   const { fonts, gutters, layout } = useTheme();
   const { t } = useTranslation();
 
-  // const { isError, isFetching, isSuccess, refetch } = useLoginquery({
-  //   username: 'user',
-  //   password: 'User@123',
-  // });
-
-  const { isError, isFetching, isSuccess, refetch } = useQuery({
-    queryFn: () => {
-      return new Promise(resolve => {
-        resolve(true);
-      });
-    },
-    queryKey: ['startup'],
-    enabled: true,
-  });
+  const { useFetchCurrentUserQuery } = useUser();
+  const { isError, isFetching, isSuccess, error } = useFetchCurrentUserQuery();
+  const { showPopup } = usePopup();
 
   useEffect(() => {
     if (isSuccess) {
       navigation.reset({
         index: 0,
-        routes: [{ name: Paths.Login }],
+        routes: [{ name: Paths.Home }],
       });
     }
-  }, [isSuccess, navigation]);
+    if (isError) {
+      showPopup(error.message, () =>
+        navigation.reset({
+          index: 0,
+          routes: [{ name: Paths.Login }],
+        }),
+      );
+    }
+  }, [isError, isSuccess, navigation]);
 
   return (
     <SafeScreen>

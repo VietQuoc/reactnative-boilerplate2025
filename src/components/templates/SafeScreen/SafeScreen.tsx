@@ -8,6 +8,7 @@ import { useTheme } from '@/theme';
 
 import { DefaultError } from '@/components/molecules';
 import { ErrorBoundary } from '@/components/organisms';
+import { Layout } from '@ui-kitten/components';
 
 type Props = PropsWithChildren<
   {
@@ -26,15 +27,17 @@ function SafeScreen({
   const { layout, navigationTheme, variant } = useTheme();
 
   return (
-    <SafeAreaView {...props} mode="padding" style={[layout.flex_1, style]}>
-      <StatusBar
-        backgroundColor={navigationTheme.colors.background}
-        barStyle={variant === 'dark' ? 'light-content' : 'dark-content'}
-      />
-      <ErrorBoundary onReset={onResetError}>
-        {isError ? <DefaultError onReset={onResetError} /> : children}
-      </ErrorBoundary>
-    </SafeAreaView>
+    <Layout style={{ flex: 1 }}>
+      <SafeAreaView {...props} mode="padding" style={[layout.flex_1, style]}>
+        <StatusBar
+          backgroundColor={navigationTheme.colors.background}
+          barStyle={variant === 'dark' ? 'light-content' : 'dark-content'}
+        />
+        <ErrorBoundary onReset={onResetError}>
+          {isError ? <DefaultError onReset={onResetError} /> : children}
+        </ErrorBoundary>
+      </SafeAreaView>
+    </Layout>
   );
 }
 

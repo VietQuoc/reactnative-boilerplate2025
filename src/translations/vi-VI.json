@@ -1,0 +1,27 @@
+{
+  "socialbearapp2": {
+    "common_appName": {
+      "full": "React Native SocialBearApp2",
+      "initials": "RNB"
+    },
+    "common_error": "Oops! Lỗi.",
+    "common_screen": {
+      "loading": "Loading",
+      "facebook": "Facebook"
+    },
+    "screen_login": {
+      "username": "Tài Khoản",
+      "password": "Mật Khẩu",
+      "login": "Đăng Nhập",
+      "register": "Đăng Ký",
+      "loggingin": "Đang đăng nhập...",
+      "remember": "Ghi nhớ",
+      "facebook_login": "Login với Facebook"
+    },
+    "error_boundary": {
+      "title": "Oops! Lỗi.",
+      "description": "Thử lại sau.",
+      "cta": "Load lại màn hình!"
+    }
+  }
+}

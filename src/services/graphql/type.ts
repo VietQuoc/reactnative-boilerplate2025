@@ -5,6 +5,7 @@ export const loginDataSchema = z.object({
   data: z.object({
     login: z.object({
       access_token: z.string(),
+      refresh_token: z.string(),
       user: userSchema,
     }),
   }),

@@ -47,6 +47,15 @@ export default {
   flex_1: {
     flex: 1,
   },
+  flex_2: {
+    flex: 2,
+  },
+  flex_3: {
+    flex: 3,
+  },
+  flex_4: {
+    flex: 4,
+  },
   fullHeight: {
     height: '100%',
   },
@@ -71,6 +80,9 @@ export default {
   },
   right0: {
     right: 0,
+  },
+  right10: {
+    right: 10,
   },
   top0: {
     top: 0,
