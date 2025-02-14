@@ -34,6 +34,10 @@ import { generateGutters, staticGutterStyles } from '@/theme/gutters';
 import layout from '@/theme/layout';
 import generateConfig from '@/theme/ThemeProvider/generateConfig';
 import { DefaultTheme } from '@react-navigation/native';
+import { ApplicationProvider } from '@ui-kitten/components';
+import * as eva from '@eva-design/eva';
+import { default as CustomTheme } from '@/theme/assets/json/theme.json';
+import { default as CustomMapping } from '@/theme/assets/json/mapping.json';
 
 type Context = {
   changeTheme: (variant: Variant) => void;
@@ -48,7 +52,7 @@ type Props = PropsWithChildren<{
 function ThemeProvider({ children = false, storage }: Props) {
   // Current theme variant
   const [variant, setVariant] = useState(
-    (storage.getString('theme') as Variant) || 'default',
+    (storage.getString('theme') as Variant) || 'light',
   );
 
   // Initialize theme at default if not defined
@@ -56,7 +60,7 @@ function ThemeProvider({ children = false, storage }: Props) {
     const appHasThemeDefined = storage.contains('theme');
     if (!appHasThemeDefined) {
       storage.set('theme', 'default');
-      setVariant('default');
+      setVariant('light');
     }
   }, [storage]);
 
@@ -132,8 +136,20 @@ function ThemeProvider({ children = false, storage }: Props) {
     return { ...theme, changeTheme, components, navigationTheme };
   }, [theme, components, navigationTheme, changeTheme]);
 
+  console.log(variant);
+
   return (
-    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>
+      <ApplicationProvider
+        {...eva}
+        theme={{
+          ...eva[variant],
+          ...CustomTheme,
+        }}
+        customMapping={CustomMapping}>
+        {children}
+      </ApplicationProvider>
+    </ThemeContext.Provider>
   );
 }
 

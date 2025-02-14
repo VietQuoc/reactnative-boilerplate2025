@@ -1,6 +1,5 @@
 import type { RootScreenProps } from '@/navigation/types';
 
-import { useQuery } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, Text, View } from 'react-native';
@@ -10,8 +9,6 @@ import { Paths } from '@/navigation/paths';
 
 import { AssetByVariant } from '@/components/atoms';
 import { SafeScreen } from '@/components/templates';
-import { AuthServices } from '@/hooks/domain/auth/authService';
-import { useLoginquery } from '@/hooks/domain/auth/useAuth';
 import { useUser } from '@/hooks';
 import usePopup from '@/theme/hooks/usePopup';
 

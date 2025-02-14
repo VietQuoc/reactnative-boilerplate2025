@@ -18,6 +18,9 @@
       "remember": "Ghi nhớ",
       "facebook_login": "Login với Facebook"
     },
+    "screen_settings": {
+      "select_theme": "Chọn Theme:"
+    },
     "error_boundary": {
       "title": "Oops! Lỗi.",
       "description": "Thử lại sau.",

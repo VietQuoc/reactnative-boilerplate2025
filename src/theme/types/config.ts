@@ -3,7 +3,7 @@ import type { Theme as NavigationTheme } from '@react-navigation/native';
 import type { config } from '@/theme/_config';
 import type generateConfig from '@/theme/ThemeProvider/generateConfig';
 
-export type Variant = 'default' | keyof typeof config.variants;
+export type Variant = 'light' | keyof typeof config.variants;
 
 export type ThemeState = {
   variant: Variant;

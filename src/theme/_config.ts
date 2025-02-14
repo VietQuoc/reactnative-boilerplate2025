@@ -4,6 +4,7 @@ import { DarkTheme, DefaultTheme } from '@react-navigation/native';
 
 export const enum Variant {
   DARK = 'dark',
+  LIGHT = 'light',
 }
 
 const colorsLight = {
@@ -34,7 +35,7 @@ const colorsDark = {
   skeleton: '#303030',
 } as const;
 
-const sizes = [12, 16, 24, 32, 40, 80] as const;
+const sizes = [0, 6, 12, 16, 24, 32, 40, 80] as const;
 
 export const config = {
   backgrounds: colorsLight,
@@ -55,6 +56,21 @@ export const config = {
     card: colorsLight.gray50,
   },
   variants: {
+    light: {
+      backgrounds: colorsLight,
+      borders: {
+        colors: colorsLight,
+      },
+      colors: colorsLight,
+      fonts: {
+        colors: colorsLight,
+      },
+      navigationColors: {
+        ...DefaultTheme.colors,
+        background: colorsLight.gray50,
+        card: colorsLight.gray50,
+      },
+    },
     dark: {
       backgrounds: colorsDark,
       borders: {

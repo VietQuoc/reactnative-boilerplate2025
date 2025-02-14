@@ -15,6 +15,7 @@ export const LOGIN_MUTATION = `
           displayName
           email
           phoneNumber
+          role
         }
     }
   }
@@ -32,10 +33,12 @@ mutation RefreshToken($authInput: RefreshTokenInput!) {
 export const USER_MUTATION = `
 query User {
   user {
+    id
     address
     avatarUrl
     createdAt
     displayName
+    role
     email
     phoneNumber
     username
@@ -57,6 +60,7 @@ export const callGraphql = async (
     });
 
     let response: ResponseSchema = await postCall.json();
+
     if (response.errors) {
       if (isAuthenticatedRequest && response.errors[0].message === 'Expired') {
         const accessToken = await refreshToken();
@@ -75,6 +79,7 @@ export const callGraphql = async (
     }
     return get(response.data, dataObject);
   } catch (error: any) {
+    console.log(error);
     throw error;
   }
 };

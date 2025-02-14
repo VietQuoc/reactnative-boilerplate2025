@@ -5,10 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from '@/theme';
 import ApplicationNavigator from '@/navigation/Application';
 import { MMKV } from 'react-native-mmkv';
-import * as eva from '@eva-design/eva';
-import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
-import { default as theme } from '@/theme/assets/json/theme.json';
-import { default as mapping } from '@/theme/assets/json/mapping.json';
+import { IconRegistry } from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
 import '@/translations';
@@ -33,17 +30,9 @@ function App() {
       <IconRegistry icons={EvaIconsPack} />
       <QueryClientProvider client={queryClient}>
         <ThemeProvider storage={storage}>
-          <ApplicationProvider
-            {...eva}
-            theme={{
-              ...(storage.getString('theme') === 'dark' ? eva.dark : eva.light),
-              ...theme,
-            }}
-            customMapping={mapping}>
-            <PopupProvider>
-              <ApplicationNavigator />
-            </PopupProvider>
-          </ApplicationProvider>
+          <PopupProvider>
+            <ApplicationNavigator />
+          </PopupProvider>
         </ThemeProvider>
       </QueryClientProvider>
     </GestureHandlerRootView>
