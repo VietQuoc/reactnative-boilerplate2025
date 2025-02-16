@@ -20,6 +20,7 @@ import UserScreen from '../User/User';
 import { useTranslation } from 'react-i18next';
 import { Variant } from '@/theme/_config';
 import layout from '@/theme/layout';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const MenuIcon = (props: any): IconElement => (
   <Icon {...props} name="menu-outline" />
@@ -116,9 +117,10 @@ function RightMenuScreen() {
   const { useFetchCurrentUserQuery } = useUser();
   const { data } = useFetchCurrentUserQuery();
   const { avatarUrl, displayName, role } = userSchema.parse(data);
+  const { top } = useSafeAreaInsets();
 
   return (
-    <Layout style={[theme.layout.flex_1]}>
+    <Layout style={[theme.layout.flex_1, { paddingTop: top }]}>
       <Navigator
         screenOptions={({ navigation }) => ({
           headerTransparent: true,

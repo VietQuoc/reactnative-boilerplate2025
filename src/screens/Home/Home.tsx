@@ -4,12 +4,15 @@ import {
   BottomNavigationTab,
   Icon,
   IconElement,
+  Layout,
 } from '@ui-kitten/components';
 import { View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import PostScreen from '../Post/Post';
 import { GoodsScreen } from '../Goods';
 import RightMenuScreen from '../RightMenu/RightMenu';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -26,12 +29,13 @@ const PostIcon = (props: any): IconElement => (
 );
 
 const BottomTabBar = ({ navigation, state }: any) => {
+  const { t } = useTranslation();
   const onSelect = (index: number) => {
     navigation.navigate(state.routeNames[index]);
   };
   return (
     <BottomNavigation selectedIndex={state.index} onSelect={onSelect}>
-      <BottomNavigationTab icon={PostIcon} title="POSTS" />
+      <BottomNavigationTab icon={PostIcon} title={t('screen_post.post')} />
       <BottomNavigationTab icon={GoodIcon} title="GOODS" />
       <BottomNavigationTab icon={MenuIcon} title="MENU" />
     </BottomNavigation>
@@ -59,9 +63,12 @@ const TabNavigator = () => (
 );
 
 function HomeScreen() {
+  const { bottom } = useSafeAreaInsets();
   return (
     <SafeScreen>
-      <TabNavigator />
+      <Layout style={{ flex: 1, paddingBottom: bottom }}>
+        <TabNavigator />
+      </Layout>
     </SafeScreen>
   );
 }

@@ -21,6 +21,19 @@
     "screen_settings": {
       "select_theme": "Chọn Theme:"
     },
+    "screen_post": {
+      "post": "Bài Đăng",
+      "like": "Thích",
+      "liked": "Đã thích",
+      "Like": "Đã Thích",
+      "Love": "Love",
+      "Haha": "Haha",
+      "Wow": "Wow",
+      "Sad": "Buồn",
+      "Angry": "Giận",
+      "Handshake": "Giao Lưu",
+      "comment": "Bình luận"
+    },
     "error_boundary": {
       "title": "Oops! Lỗi.",
       "description": "Thử lại sau.",

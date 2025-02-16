@@ -2,49 +2,7 @@ import { storage } from '@/App';
 import { instance } from '../instance';
 import { ResponseSchema } from './type';
 import { get } from 'lodash';
-
-export const LOGIN_MUTATION = `
-  mutation Login($authInput: AuthInput!) {
-    login(authInput: $authInput) {
-        access_token
-        refresh_token
-        user {
-          id
-          address
-          avatarUrl
-          displayName
-          email
-          phoneNumber
-          role
-        }
-    }
-  }
-`;
-export const REFRESH_TOKEN = `
-mutation RefreshToken($authInput: RefreshTokenInput!) {
-  refreshToken(authInput: $authInput) {
-    access_token
-    refresh_token
-    user {
-      id
-    }
-  }
-}`;
-export const USER_MUTATION = `
-query User {
-  user {
-    id
-    address
-    avatarUrl
-    createdAt
-    displayName
-    role
-    email
-    phoneNumber
-    username
-    updatedAt
-  }
-}`;
+import { REFRESH_TOKEN_STRING } from './graphqlString/login';
 
 export const callGraphql = async (
   query: string,
@@ -87,7 +45,7 @@ export const callGraphql = async (
 async function refreshToken(): Promise<string> {
   try {
     const data = await callGraphql(
-      REFRESH_TOKEN,
+      REFRESH_TOKEN_STRING,
       {
         authInput: {
           refresh_token: storage.getString('refreshToken'),

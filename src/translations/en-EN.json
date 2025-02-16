@@ -21,6 +21,19 @@
     "screen_settings": {
       "select_theme": "Select Theme: "
     },
+    "screen_post": {
+      "post": "Posts",
+      "like": "Like",
+      "liked": "Liked",
+      "Like": "Liked",
+      "Love": "Love",
+      "Haha": "Haha",
+      "Wow": "Wow",
+      "Sad": "Sad",
+      "Angry": "Angry",
+      "Handshake": "Handshake",
+      "comment": "Comment"
+    },
     "error_boundary": {
       "title": "Oops! Something went wrong.",
       "description": "We are sorry for the inconvenience. Please try again later.",

@@ -1,5 +1,6 @@
 import { storage } from '@/App';
-import { callGraphql, LOGIN_MUTATION } from '@/services/graphql/graphql';
+import { callGraphql } from '@/services/graphql/graphql';
+import { LOGIN_MUTATION_STRING } from '@/services/graphql/graphqlString/login';
 import { z } from 'zod';
 
 export const authResponseSchema = z.object({
@@ -15,7 +16,7 @@ function isAuthenticated(): boolean | undefined {
 }
 async function login(username: string, password: string) {
   const response = await callGraphql(
-    LOGIN_MUTATION,
+    LOGIN_MUTATION_STRING,
     {
       authInput: {
         password,

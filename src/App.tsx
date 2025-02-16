@@ -10,6 +10,7 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
 import '@/translations';
 import { PopupProvider } from './components/ui/popups/PopupProvider';
+import { VectorIconsPack } from './components/ui/icons/VectorIcon';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -27,7 +28,7 @@ export const storage = new MMKV();
 function App() {
   return (
     <GestureHandlerRootView>
-      <IconRegistry icons={EvaIconsPack} />
+      <IconRegistry icons={[EvaIconsPack, VectorIconsPack]} />
       <QueryClientProvider client={queryClient}>
         <ThemeProvider storage={storage}>
           <PopupProvider>

@@ -136,8 +136,6 @@ function ThemeProvider({ children = false, storage }: Props) {
     return { ...theme, changeTheme, components, navigationTheme };
   }, [theme, components, navigationTheme, changeTheme]);
 
-  console.log(variant);
-
   return (
     <ThemeContext.Provider value={value}>
       <ApplicationProvider
