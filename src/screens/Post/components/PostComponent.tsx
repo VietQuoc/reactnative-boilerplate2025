@@ -6,6 +6,8 @@ import { useDislikePost, useLikePost } from '@/hooks/domain/like/useLike';
 import { LikeTypes } from '@/hooks/domain/like/enums';
 import { usePosts } from '@/hooks/domain/post/usePost';
 import { useCallback, useMemo, useState } from 'react';
+import { Image, View } from 'react-native';
+import layout from '@/theme/layout';
 
 const PostComponent = (props: any) => {
   const { post }: { post: PostSchemaType } = props;
@@ -42,14 +44,39 @@ const PostComponent = (props: any) => {
     ),
     [postData?.user, postData?.createdAt, postData?.privacy],
   );
+
   const PostContent = useMemo(
-    () => <Text>{postData.content}</Text>,
-    [postData.content],
+    () => (
+      <View>
+        <Text>{postData.content}</Text>
+        <View style={[layout.row]}>
+          {postData.imageUrls && postData.imageUrls.length > 0 ? (
+            postData.imageUrls.map((item: string) => (
+              <Image
+                key={item}
+                source={{ uri: item }}
+                resizeMode="cover"
+                style={{
+                  width: 100,
+                  height: 100,
+                  borderWidth: 0.2,
+                  borderColor: 'gray',
+                }}
+              />
+            ))
+          ) : (
+            <View />
+          )}
+        </View>
+      </View>
+    ),
+    [postData.content, postData.imageUrls],
   );
   const PostFooter = useMemo(
     () => (
       <PostComponentFooter
         {...props}
+        postId={postId}
         likes={postData?.likes}
         isLikedByCurrentUser={postData.isLikedByCurrentUser}
         handleLike={handleLike}

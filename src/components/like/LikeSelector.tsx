@@ -1,8 +1,13 @@
 import { LikeIcons, LikeTypes } from '@/hooks/domain/like/enums';
 import { useTheme } from '@/theme';
 import { Button, Icon } from '@ui-kitten/components';
-import { useCallback, useMemo } from 'react';
-import { View } from 'react-native';
+import { useCallback, useEffect, useMemo, useRef } from 'react';
+import { PanResponder, View } from 'react-native';
+import {
+  Gesture,
+  GestureDetector,
+  GestureHandlerRootView,
+} from 'react-native-gesture-handler';
 
 function LikeSelector(props: any) {
   const { layout } = useTheme();
@@ -12,6 +17,7 @@ function LikeSelector(props: any) {
     handleDisLike,
     isLikedByCurrentUser,
     setVisible,
+    activeIcon,
   }: {
     handleLike: Function;
     handleDisLike: Function;
@@ -20,6 +26,7 @@ function LikeSelector(props: any) {
       isLiked: boolean;
     };
     setVisible: Function;
+    activeIcon: { active: boolean; index: number };
   } = props;
   const likeTypesValues = useMemo(() => Object.values(LikeTypes), []);
 
@@ -33,6 +40,16 @@ function LikeSelector(props: any) {
     [isLikedByCurrentUser.isLiked],
   );
 
+  const activeSize = useCallback(
+    (index: number) => {
+      if (activeIcon.active && index == activeIcon.index) {
+        return true;
+      }
+      return false;
+    },
+    [activeIcon],
+  );
+
   return (
     <View {...props} style={[props.style, layout.row]}>
       {listIcons.map((i, index) => (
@@ -40,11 +57,21 @@ function LikeSelector(props: any) {
           key={i}
           size="small"
           appearance="ghost"
-          onPressIn={() => console.log('onMouseEnter')}
           onPress={() => handleClickLike(likeTypesValues[index])}
-          accessoryLeft={(props: any) => (
-            <Icon {...props} style={[props?.style]} pack="vector" name={i} />
-          )}
+          accessoryLeft={(props: any) => {
+            const isCustomSize = activeSize(index);
+            return (
+              <Icon
+                {...props}
+                style={[
+                  props?.style,
+                  isCustomSize ? { width: 35, height: 35 } : 0,
+                ]}
+                pack="vector"
+                name={i}
+              />
+            );
+          }}
         />
       ))}
     </View>

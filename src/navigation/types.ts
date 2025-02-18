@@ -7,6 +7,7 @@ export type RootStackParamList = {
   [Paths.Home]: undefined;
   [Paths.Login]: undefined;
   [Paths.Register]: undefined;
+  [Paths.Comment]: undefined;
 };
 
 export type RootScreenProps<
