@@ -56,6 +56,7 @@ function LikeSelector(props: any) {
         <Button
           key={i}
           size="small"
+          style={{ width: 50 }}
           appearance="ghost"
           onPress={() => handleClickLike(likeTypesValues[index])}
           accessoryLeft={(props: any) => {
@@ -66,6 +67,11 @@ function LikeSelector(props: any) {
                 style={[
                   props?.style,
                   isCustomSize ? { width: 35, height: 35 } : 0,
+                  {
+                    position: 'absolute',
+                    left: isCustomSize ? -27 : -17.5,
+                    top: isCustomSize ? -27 : '-50%',
+                  },
                 ]}
                 pack="vector"
                 name={i}
