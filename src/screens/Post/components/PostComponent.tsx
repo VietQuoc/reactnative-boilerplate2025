@@ -1,4 +1,4 @@
-import { Card, Text } from '@ui-kitten/components';
+import { Card } from '@ui-kitten/components';
 import PostComponentHeader from './PostComponentHeader';
 import PostComponentFooter from './PostComponentFooter';
 import { PostSchemaType } from '@/hooks/domain/post/schema';
@@ -6,8 +6,9 @@ import { useDislikePost, useLikePost } from '@/hooks/domain/like/useLike';
 import { LikeTypes } from '@/hooks/domain/like/enums';
 import { usePosts } from '@/hooks/domain/post/usePost';
 import { useCallback, useMemo, useState } from 'react';
-import { Image, View } from 'react-native';
-import layout from '@/theme/layout';
+import { View } from 'react-native';
+import PostMediaComponent from './PostMediaComponent';
+import PostContentComponent from './PostContentComponent';
 
 const PostComponent = (props: any) => {
   const { post }: { post: PostSchemaType } = props;
@@ -47,27 +48,9 @@ const PostComponent = (props: any) => {
 
   const PostContent = useMemo(
     () => (
-      <View>
-        <Text>{postData.content}</Text>
-        <View style={[layout.row]}>
-          {postData.imageUrls && postData.imageUrls.length > 0 ? (
-            postData.imageUrls.map((item: string) => (
-              <Image
-                key={item}
-                source={{ uri: item }}
-                resizeMode="cover"
-                style={{
-                  width: 100,
-                  height: 100,
-                  borderWidth: 0.2,
-                  borderColor: 'gray',
-                }}
-              />
-            ))
-          ) : (
-            <View />
-          )}
-        </View>
+      <View style={{ marginHorizontal: -15 }}>
+        <PostContentComponent postData={postData} />
+        <PostMediaComponent postData={postData} />
       </View>
     ),
     [postData.content, postData.imageUrls],
@@ -86,10 +69,7 @@ const PostComponent = (props: any) => {
     [postData?.likes, postData.isLikedByCurrentUser, handleLike, handleDisLike],
   );
   return (
-    <Card
-      style={{ flex: 1, margin: 2 }}
-      header={PostHeader}
-      footer={() => PostFooter}>
+    <Card disabled={true} header={PostHeader} footer={() => PostFooter}>
       {PostContent}
     </Card>
   );

@@ -32,7 +32,8 @@
       "Sad": "Sad",
       "Angry": "Angry",
       "Handshake": "Handshake",
-      "comment": "Comment"
+      "comment": "Comment",
+      "more": "More"
     },
     "error_boundary": {
       "title": "Oops! Something went wrong.",

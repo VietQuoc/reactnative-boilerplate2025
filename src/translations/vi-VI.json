@@ -32,7 +32,8 @@
       "Sad": "Buồn",
       "Angry": "Giận",
       "Handshake": "Giao Lưu",
-      "comment": "Bình luận"
+      "comment": "Bình luận",
+      "more": "Thêm"
     },
     "error_boundary": {
       "title": "Oops! Lỗi.",

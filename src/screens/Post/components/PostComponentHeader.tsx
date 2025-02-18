@@ -51,7 +51,13 @@ const PostComponentHeader = (props: any): React.ReactElement => {
   }, [privacy]);
 
   const containerStyle = useMemo(() => {
-    if (isCard) return [layout.row, layout.itemsCenter, gutters.margin_12];
+    if (isCard)
+      return [
+        layout.row,
+        layout.itemsCenter,
+        gutters.margin_12,
+        layout.justifyBetween,
+      ];
     return [
       layout.row,
       layout.itemsCenter,
@@ -96,9 +102,9 @@ const PostComponentHeader = (props: any): React.ReactElement => {
       </View>
       <View>
         <Button
-          size="large"
+          size="medium"
           appearance="ghost"
-          accessoryLeft={props => <Icon on {...props} name="more-vertical" />}
+          accessoryRight={props => <Icon on {...props} name="more-vertical" />}
         />
       </View>
     </View>
