@@ -14,9 +14,11 @@ import { useOrientation, OrientationKey } from '@/hooks/devices/useOrientation';
 import usePopup from '@/theme/hooks/usePopup';
 import { RootScreenProps } from '@/navigation/types';
 import { Paths } from '@/navigation/paths';
+import { useNavigation } from '@react-navigation/native';
 
-function LoginScreen({ navigation }: RootScreenProps<Paths.Login>) {
+function LoginScreen() {
   const { t } = useTranslation();
+  const navigation: any = useNavigation();
   const { layout, gutters, fonts } = useTheme();
   const orientation = useOrientation();
   const [password, setPassword] = useState('');

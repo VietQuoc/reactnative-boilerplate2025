@@ -67,7 +67,12 @@ const PostComponentHeader = (props: any): React.ReactElement => {
   }, [isCard]);
 
   return (
-    <View {...props} style={containerStyle}>
+    <View
+      {...props}
+      style={[
+        containerStyle,
+        props.containerStyle ? props.containerStyle : {},
+      ]}>
       <View style={[layout.row, layout.itemsCenter]}>
         {isCard ? null : (
           <TopNavigationAction
@@ -82,9 +87,7 @@ const PostComponentHeader = (props: any): React.ReactElement => {
           <View style={[gutters.paddingTop_3, layout.row, layout.itemsCenter]}>
             <Text category="c1">{time}</Text>
             <Icon
-              {...props}
               style={[
-                { ...props.style },
                 {
                   width: 18,
                   height: 18,

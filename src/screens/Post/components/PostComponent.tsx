@@ -36,7 +36,6 @@ const PostComponent = (props: any) => {
   const PostHeader = useMemo(
     () => (
       <PostComponentHeader
-        {...props}
         avatarUrl={postData?.user?.avatarUrl}
         displayName={postData?.user?.displayName}
         createdAt={postData?.createdAt}

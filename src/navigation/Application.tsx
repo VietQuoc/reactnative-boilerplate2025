@@ -1,7 +1,8 @@
-import type { RootStackParamList } from '@/navigation/types';
-
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import {
+  createStaticNavigation,
+  NavigationContainer,
+} from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { useTheme } from '@/theme';
@@ -12,25 +13,29 @@ import {
   HomeScreen,
   LoginScreen,
   RegisterScreen,
-  CommentScreen,
+  PostDetailScreen,
 } from '@/screens';
 
-const Stack = createStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator({
+  screens: {
+    [Paths.Startup]: Startup,
+    [Paths.Home]: HomeScreen,
+    [Paths.Login]: LoginScreen,
+    [Paths.Register]: RegisterScreen,
+    [Paths.PostDetail]: PostDetailScreen,
+  },
+  screenOptions: { headerShown: false },
+});
+const Navigation = createStaticNavigation(Stack);
 
 function ApplicationNavigator() {
   const { navigationTheme, variant } = useTheme();
 
   return (
     <SafeAreaProvider>
-      <NavigationContainer theme={navigationTheme}>
-        <Stack.Navigator key={variant} screenOptions={{ headerShown: false }}>
-          <Stack.Screen component={Startup} name={Paths.Startup} />
-          <Stack.Screen component={HomeScreen} name={Paths.Home} />
-          <Stack.Screen component={LoginScreen} name={Paths.Login} />
-          <Stack.Screen component={RegisterScreen} name={Paths.Register} />
-          <Stack.Screen component={CommentScreen} name={Paths.Comment} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      {/* <NavigationContainer theme={navigationTheme}> */}
+      <Navigation key={variant} />
+      {/* </NavigationContainer> */}
     </SafeAreaProvider>
   );
 }

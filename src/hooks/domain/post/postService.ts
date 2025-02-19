@@ -43,7 +43,7 @@ export const PostService = {
         },
         true,
       );
-      console.log('fetchPost: ', response);
+
       return response;
     } else {
       throw new Error('Still not logged in!');

@@ -7,4 +7,5 @@ export const instance = ky.extend({
     'Apollo-Require-Preflight': 'true',
   },
   prefixUrl,
+  throwHttpErrors: false,
 });

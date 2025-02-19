@@ -4,5 +4,5 @@ export const enum Paths {
   Home = 'home',
   Login = 'login',
   Register = 'register',
-  Comment = 'comment',
+  PostDetail = 'postdetail',
 }

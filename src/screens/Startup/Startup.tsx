@@ -1,5 +1,3 @@
-import type { RootScreenProps } from '@/navigation/types';
-
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ActivityIndicator, Text, View } from 'react-native';
@@ -11,10 +9,12 @@ import { AssetByVariant } from '@/components/atoms';
 import { SafeScreen } from '@/components/templates';
 import { useUser } from '@/hooks';
 import usePopup from '@/theme/hooks/usePopup';
+import { useNavigation } from '@react-navigation/native';
 
-function Startup({ navigation }: RootScreenProps<Paths.Startup>) {
+function Startup() {
   const { fonts, gutters, layout } = useTheme();
   const { t } = useTranslation();
+  const navigation = useNavigation();
 
   const { useFetchCurrentUserQuery } = useUser();
   const { isError, isFetching, isSuccess, error } = useFetchCurrentUserQuery();

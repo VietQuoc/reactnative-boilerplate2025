@@ -34,7 +34,9 @@ const PostComponentFooter = (props: any): ReactElement => {
           size="small"
           appearance="ghost"
           style={gutters.marginRight_3}
-          onPress={() => navigate(Paths.Comment, { id: props.postId })}
+          onPress={() =>
+            navigate(Paths.PostDetail, { id: props.postId, imageIndex: 0 })
+          }
           accessoryLeft={props => (
             <Icon {...props} pack="vector" name="comment" />
           )}>
