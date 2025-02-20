@@ -8,4 +8,5 @@ export const instance = ky.extend({
   },
   prefixUrl,
   throwHttpErrors: false,
+  timeout: 600000,
 });

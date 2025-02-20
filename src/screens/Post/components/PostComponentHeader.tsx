@@ -9,7 +9,7 @@ import {
   TopNavigationAction,
   useTheme as useThemeKitten,
 } from '@ui-kitten/components';
-import { Privacy } from '@/hooks/domain/post/schema';
+import { getPrivacyIconText, Privacy } from '@/hooks/domain/post/schema';
 import { Variant } from '@/theme/_config';
 import { useMemo } from 'react';
 import { View } from 'react-native';
@@ -36,19 +36,6 @@ const PostComponentHeader = (props: any): React.ReactElement => {
     [createdAt],
   );
   const nanavigation = useNavigation();
-
-  let privacyIconText = useMemo(() => {
-    switch (privacy) {
-      case Privacy.PUBLIC:
-        return 'globe-3';
-      case Privacy.FRIENDS:
-        return 'user-group';
-      case Privacy.PRIVATE:
-        return 'lock';
-      default:
-        return 'user-group';
-    }
-  }, [privacy]);
 
   const containerStyle = useMemo(() => {
     if (isCard)
@@ -98,7 +85,7 @@ const PostComponentHeader = (props: any): React.ReactElement => {
                 },
                 gutters.marginLeft_6,
               ]}
-              name={privacyIconText}
+              name={getPrivacyIconText(privacy)}
             />
           </View>
         </View>

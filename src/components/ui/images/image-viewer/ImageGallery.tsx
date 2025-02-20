@@ -77,6 +77,10 @@ const ImageGallery = ({
   };
 
   const renderThumb = ({ item, index }: RenderImageProps) => {
+    const thumbSource =
+      item.type === 'video'
+        ? require('@/theme/assets/images/video-thumbnail.jpg')
+        : { uri: item.thumbUrl ? item.thumbUrl : item.url };
     return (
       <TouchableOpacity
         onPress={() => scrollToIndex(index)}
@@ -96,7 +100,7 @@ const ImageGallery = ({
                   ]
                 : [styles.thumb, { width: thumbSize, height: thumbSize }]
             }
-            source={{ uri: item.thumbUrl ? item.thumbUrl : item.url }}
+            source={thumbSource}
           />
         )}
       </TouchableOpacity>

@@ -7,3 +7,4 @@ export { default as SettingScreen } from './Settings/Setting';
 export { default as UserScreen } from './User/User';
 export { default as RightMenuScreen } from './RightMenu/RightMenu';
 export { default as PostDetailScreen } from './Post/PostDetail';
+export { default as PostCreatorScreen } from './Post/PostCreator';

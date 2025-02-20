@@ -5,4 +5,5 @@ export const enum Paths {
   Login = 'login',
   Register = 'register',
   PostDetail = 'postdetail',
+  PostCreator = 'postcreator',
 }

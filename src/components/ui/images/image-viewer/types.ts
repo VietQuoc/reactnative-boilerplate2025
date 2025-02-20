@@ -49,6 +49,7 @@ export interface FooterProps {
 export interface ImageObject {
   id?: string | number;
   thumbUrl?: string;
+  type?: 'image' | 'video';
   url: string;
 }
 

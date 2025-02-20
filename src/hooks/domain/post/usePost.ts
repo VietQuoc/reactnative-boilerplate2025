@@ -1,10 +1,13 @@
 import {
   useInfiniteQuery,
+  useMutation,
   useQuery,
   useQueryClient,
 } from '@tanstack/react-query';
 
 import { PostService } from './postService';
+import { Privacy } from './schema';
+import { Asset } from 'react-native-image-picker';
 
 export const enum PostQueryKey {
   fetchOnePost = 'fetchOnePost',
@@ -18,6 +21,21 @@ const useFetchOnePostQuery = (postId: number) =>
     queryKey: [PostQueryKey.fetchOnePost + postId],
   });
 
+const useSubmitOnePostMutation = () => {
+  const mutation = useMutation({
+    mutationFn: ({
+      content,
+      privacy,
+      files,
+    }: {
+      content: string;
+      privacy: Privacy;
+      files: Array<Asset>;
+    }) => PostService.submitPost(content, privacy, files),
+  });
+  return mutation;
+};
+
 const useFetchPostsConnectionInfiniteQuery = (first: number) =>
   useInfiniteQuery({
     initialPageParam: '',
@@ -28,19 +46,24 @@ const useFetchPostsConnectionInfiniteQuery = (first: number) =>
         ? lastPage.pageInfo.endCursor
         : undefined;
     },
+    refetchOnWindowFocus: true,
   });
 
 export const usePosts = () => {
   const client = useQueryClient();
 
   const invalidateQuery = (queryKeys: PostQueryKey[]) =>
-    client.invalidateQueries({
-      queryKey: queryKeys,
-    });
+    client.invalidateQueries(
+      {
+        queryKey: queryKeys,
+      },
+      {},
+    );
 
   return {
     invalidateQuery,
     useFetchOnePostQuery,
     useFetchPostsConnectionInfiniteQuery,
+    useSubmitOnePostMutation,
   };
 };

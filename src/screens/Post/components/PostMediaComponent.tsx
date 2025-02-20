@@ -3,14 +3,23 @@ import { Paths } from '@/navigation/paths';
 import { useTheme } from '@/theme';
 import { useNavigation } from '@react-navigation/native';
 import { Icon, Text } from '@ui-kitten/components';
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TouchableWithoutFeedback, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
+import Video from 'react-native-video';
 
 const ImageShow = memo(
-  ({ item, index, id }: { item: string; index: number; id: number }) => {
+  ({
+    item,
+    index,
+    id,
+  }: {
+    item: { type: 'image' | 'video'; uri: string };
+    index: number;
+    id: number;
+  }) => {
     const { layout, fonts } = useTheme();
     const { t } = useTranslation();
     const { navigate }: { navigate: any } = useNavigation();
@@ -24,16 +33,42 @@ const ImageShow = memo(
             borderColor: 'gray',
             flex: 1,
           }}>
-          <Animated.Image
-            source={{ uri: item }}
-            resizeMode="contain"
-            sharedTransitionTag="media"
-            style={[
-              {
-                aspectRatio: 1 / 1,
-              },
-            ]}
-          />
+          {item.type === 'image' ? (
+            <Animated.Image
+              source={{ uri: item.uri }}
+              resizeMode="contain"
+              sharedTransitionTag="media"
+              style={[
+                {
+                  aspectRatio: 1 / 1,
+                },
+              ]}
+            />
+          ) : (
+            <View
+              style={[
+                {
+                  aspectRatio: 1 / 1,
+                },
+              ]}>
+              <Video
+                playInBackground={false}
+                playWhenInactive={false}
+                paused={true}
+                style={{ width: '100%', height: '100%' }}
+                source={{ uri: item.uri }}
+              />
+              <View
+                style={[
+                  layout.absolute,
+                  { width: '100%', height: '100%' },
+                  layout.justifyCenter,
+                  layout.itemsCenter,
+                ]}>
+                <Icon style={{ width: 30, height: 30 }} name="play-circle" />
+              </View>
+            </View>
+          )}
           {index === 3 && (
             <View
               style={[
@@ -65,18 +100,17 @@ const ImageShow = memo(
 const PostMediaComponent = memo(
   ({ postData }: { postData: PostSchemaType }) => {
     const { layout } = useTheme();
-    const { imageUrls } = postData;
-    const imagesShow = imageUrls.slice(0, 4);
+    const { medias } = postData;
+
     return (
       <View style={[layout.row]}>
         <FlatList
-          data={imagesShow}
-          keyExtractor={item => item}
+          data={medias.slice(0, 4)}
+          keyExtractor={item => item.uri}
           numColumns={2}
           contentContainerStyle={layout.flex_1}
           renderItem={({ item, index }) => (
             <ImageShow
-              key={index}
               item={item}
               index={index}
               id={parseInt(postData.id, 10)}

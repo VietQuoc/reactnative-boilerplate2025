@@ -7,16 +7,34 @@ export enum Privacy {
   PRIVATE = 'private',
 }
 
+export function getPrivacyIconText(privacy: Privacy): string {
+  console.log('privacy: ', privacy);
+  switch (privacy) {
+    case Privacy.PUBLIC:
+      return 'globe-3';
+    case Privacy.FRIENDS:
+      return 'people';
+    case Privacy.PRIVATE:
+      return 'lock-outline';
+    default:
+      return 'people';
+  }
+}
+
 export const postSchema = z.object({
   content: z.string(),
   commentCount: z.number(),
   createdAt: z.string(),
   updatedAt: z.string(),
   id: z.string(),
-  imageUrls: z.array(z.string()),
+  medias: z.array(
+    z.object({
+      type: z.union([z.literal('image'), z.literal('video')]),
+      uri: z.string(),
+    }),
+  ),
   likeCount: z.number(),
   privacy: z.string(),
-  videoUrls: z.array(z.string()),
   isLikedByCurrentUser: z.object({
     type: z.string(),
     isLiked: z.boolean(),

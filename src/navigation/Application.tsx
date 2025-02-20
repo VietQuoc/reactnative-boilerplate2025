@@ -14,6 +14,7 @@ import {
   LoginScreen,
   RegisterScreen,
   PostDetailScreen,
+  PostCreatorScreen,
 } from '@/screens';
 
 const Stack = createNativeStackNavigator({
@@ -23,6 +24,7 @@ const Stack = createNativeStackNavigator({
     [Paths.Login]: LoginScreen,
     [Paths.Register]: RegisterScreen,
     [Paths.PostDetail]: PostDetailScreen,
+    [Paths.PostCreator]: PostCreatorScreen,
   },
   screenOptions: { headerShown: false },
 });

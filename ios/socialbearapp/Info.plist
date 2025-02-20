@@ -54,5 +54,18 @@
 		<string>FontAwesome6_Regular.ttf</string>
 		<string>FontAwesome6_Solid.ttf</string>
 	</array>
+	<!-- To select image/video from Photos -->
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app requires access to your photo library to select images and videos.</string>
+
+	<!-- To capture image -->
+	<key>NSCameraUsageDescription</key>
+	<string>This app requires access to your camera to capture photos.</string>
+
+	<!-- To capture video (requires both camera and microphone) -->
+	<key>NSCameraUsageDescription</key>
+	<string>This app requires access to your camera to record videos.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app requires access to your microphone to record audio while recording videos.</string>
 </dict>
 </plist>

@@ -23,6 +23,7 @@
     },
     "screen_post": {
       "post": "Bài Đăng",
+      "submit_post": "Đăng",
       "like": "Thích",
       "liked": "Đã thích",
       "Like": "Đã Thích",
@@ -33,7 +34,17 @@
       "Angry": "Giận",
       "Handshake": "Giao Lưu",
       "comment": "Bình luận",
-      "more": "Thêm"
+      "more": "Thêm",
+      "create_post": "Đăng bài...",
+      "create_new_post": "Đăng bài mới",
+      "privacy": "Riêng tư",
+      "public": "Công khai",
+      "friends": "Bạn bè",
+      "private": "Chỉ mình tôi",
+      "content...": "Nội dung..."
+    },
+    "screen_comment": {
+      "comment...": "Bình luận..."
     },
     "error_boundary": {
       "title": "Oops! Lỗi.",

@@ -23,6 +23,7 @@
     },
     "screen_post": {
       "post": "Posts",
+      "submit_post": "Post",
       "like": "Like",
       "liked": "Liked",
       "Like": "Liked",
@@ -33,7 +34,17 @@
       "Angry": "Angry",
       "Handshake": "Handshake",
       "comment": "Comment",
-      "more": "More"
+      "more": "More",
+      "create_post": "Create post...",
+      "create_new_post": "Create New Post",
+      "privacy": "Privacy",
+      "public": "Public",
+      "friends": "Friends",
+      "private": "Private",
+      "content...": "Content..."
+    },
+    "screen_comment": {
+      "comment...": "Comment..."
     },
     "error_boundary": {
       "title": "Oops! Something went wrong.",

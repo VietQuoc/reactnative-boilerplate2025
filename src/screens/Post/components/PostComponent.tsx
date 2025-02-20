@@ -52,7 +52,7 @@ const PostComponent = (props: any) => {
         <PostMediaComponent postData={postData} />
       </View>
     ),
-    [postData.content, postData.imageUrls],
+    [postData.content, postData.medias],
   );
   const PostFooter = useMemo(
     () => (
