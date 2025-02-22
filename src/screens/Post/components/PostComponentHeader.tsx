@@ -91,10 +91,19 @@ const PostComponentHeader = (props: any): React.ReactElement => {
         </View>
       </View>
       <View>
-        <Button
-          size="medium"
-          appearance="ghost"
-          accessoryRight={props => <Icon on {...props} name="more-vertical" />}
+        <Icon
+          style={{
+            width: 20,
+            height: 20,
+            tintColor:
+              variant === Variant.LIGHT
+                ? t['color-basic-900']
+                : t['color-basic-100'],
+          }}
+          size="small"
+          width={20}
+          height={20}
+          name="more-vertical"
         />
       </View>
     </View>

@@ -36,7 +36,7 @@ const ImageShow = memo(
           {item.type === 'image' ? (
             <Animated.Image
               source={{ uri: item.uri }}
-              resizeMode="contain"
+              resizeMode="cover"
               sharedTransitionTag="media"
               style={[
                 {

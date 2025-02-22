@@ -52,7 +52,7 @@ const useFetchPostsConnectionInfiniteQuery = (first: number) =>
 export const usePosts = () => {
   const client = useQueryClient();
 
-  const invalidateQuery = (queryKeys: PostQueryKey[]) =>
+  const invalidateQuery = (queryKeys: string[]) =>
     client.invalidateQueries(
       {
         queryKey: queryKeys,

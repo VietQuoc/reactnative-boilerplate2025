@@ -44,7 +44,8 @@
       "content...": "Content..."
     },
     "screen_comment": {
-      "comment...": "Comment..."
+      "comment...": "Comment...",
+      "send": "Send"
     },
     "error_boundary": {
       "title": "Oops! Something went wrong.",

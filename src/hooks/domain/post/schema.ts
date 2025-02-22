@@ -8,7 +8,6 @@ export enum Privacy {
 }
 
 export function getPrivacyIconText(privacy: Privacy): string {
-  console.log('privacy: ', privacy);
   switch (privacy) {
     case Privacy.PUBLIC:
       return 'globe-3';

@@ -44,7 +44,8 @@
       "content...": "Nội dung..."
     },
     "screen_comment": {
-      "comment...": "Bình luận..."
+      "comment...": "Bình luận...",
+      "send": "Gửi"
     },
     "error_boundary": {
       "title": "Oops! Lỗi.",
