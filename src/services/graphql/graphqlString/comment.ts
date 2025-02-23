@@ -1,3 +1,4 @@
+import { gql } from '@apollo/client';
 export const COMMENT_CREATE_MUTATION = `mutation CreateComment($createCommentInput: CreateCommentInput!) {
   createComment(createCommentInput: $createCommentInput) {
     id
@@ -42,3 +43,22 @@ query Comments($findInput: PaginationFindInput!, $postId: Float!) {
     totalCount
   }
 }`;
+
+export const COMMENT_SUBSCRIPTION_STRING = gql`
+  subscription CommentAdded($postId: Float!) {
+    commentAdded(postId: $postId) {
+      id
+      content
+      createdAt
+      likes {
+        type
+        isLikedByCurrentUser
+      }
+      user {
+        displayName
+        avatarUrl
+        id
+      }
+    }
+  }
+`;

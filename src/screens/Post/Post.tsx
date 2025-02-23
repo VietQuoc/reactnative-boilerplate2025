@@ -23,16 +23,9 @@ function PostScreen() {
     outputRange: [1, 0],
     extrapolate: 'clamp',
   });
-  const {
-    data: newpostData,
-    loading,
-    error,
-  } = useSubscription(POST_ADDED_SUBSCRIPTION);
-  console.log('newpostData', newpostData, loading, error);
 
   const { data, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useFetchPostsConnectionInfiniteQuery(5);
-
   useEffect(() => {
     const newPosts =
       data?.pages.flatMap(page => page.edges.map(edge => edge.node)) || [];
@@ -56,12 +49,23 @@ function PostScreen() {
       return merged;
     });
   }, [data]);
-
   const loadMore = useCallback(() => {
     if (hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
+
+  const {
+    data: newSubscriptionPostData,
+    loading,
+    error,
+  } = useSubscription(POST_ADDED_SUBSCRIPTION);
+  useEffect(() => {
+    if (newSubscriptionPostData) {
+      const postData: PostSchemaType = newSubscriptionPostData?.postAdded;
+      setPosts(lastPosts => [postData, ...lastPosts]);
+    }
+  }, [newSubscriptionPostData]);
 
   return (
     <Layout level="1" style={[layout.flex_1]}>

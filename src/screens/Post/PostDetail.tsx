@@ -17,6 +17,8 @@ import { useComments } from '@/hooks/domain/comment/useComment';
 import { CommentSchemaType } from '@/hooks/domain/comment/schema';
 import PostCommentItem from './components/PostCommentItem';
 import { ScrollView } from 'react-native-gesture-handler';
+import { useSubscription } from '@apollo/client';
+import { COMMENT_SUBSCRIPTION_STRING } from '@/services/graphql/graphqlString/comment';
 
 const isCloseToBottom = ({
   layoutMeasurement,
@@ -59,6 +61,7 @@ function PostDetailScreen(props: any) {
       setData(data);
     });
   }, [id]);
+
   useEffect(() => {
     const newComments =
       commentData?.pages.flatMap(page => page.edges.map(edge => edge.node)) ||
@@ -101,6 +104,23 @@ function PostDetailScreen(props: any) {
       refetch().then(({ data: returnData }) => setData(returnData));
     }
   }, [postId]);
+
+  const {
+    data: newSubscriptionCommentData,
+    loading,
+    error,
+  } = useSubscription(COMMENT_SUBSCRIPTION_STRING, {
+    variables: {
+      postId: id,
+    },
+  });
+  useEffect(() => {
+    if (newSubscriptionCommentData) {
+      const commentData: CommentSchemaType =
+        newSubscriptionCommentData?.commentAdded;
+      setComments(lastComments => [commentData, ...lastComments]);
+    }
+  }, [newSubscriptionCommentData]);
 
   return (
     <Layout level="1" style={[layout.flex_1]}>
