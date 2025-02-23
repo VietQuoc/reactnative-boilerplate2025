@@ -13,15 +13,12 @@ export const callGraphql = async (
   isAuthenticatedRequest: boolean = false,
 ) => {
   try {
-    console.log('postCall: ', { query, variables });
     let postCall = await instance.post('graphql', {
       headers: headers ?? [],
       json: { query, variables },
     });
-    console.log('postCall: ', postCall);
 
     let response: ResponseSchema = await postCall.json();
-    console.log('response: ', response);
 
     if (response.errors) {
       if (isAuthenticatedRequest && response.errors[0].message === 'Expired') {

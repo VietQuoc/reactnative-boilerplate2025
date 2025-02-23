@@ -8,6 +8,8 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PostComponent from './components/PostComponent';
 import { COMMENT_BOX_HEIGHT } from '@/components/comment/CommentBox';
 import PostInput, { PostInputType } from '@/components/ui/inputs/PostInput';
+import { useSubscription } from '@apollo/client';
+import { POST_ADDED_SUBSCRIPTION } from '@/services/graphql/graphqlString/post';
 
 function PostScreen() {
   const { layout } = useTheme();
@@ -21,6 +23,12 @@ function PostScreen() {
     outputRange: [1, 0],
     extrapolate: 'clamp',
   });
+  const {
+    data: newpostData,
+    loading,
+    error,
+  } = useSubscription(POST_ADDED_SUBSCRIPTION);
+  console.log('newpostData', newpostData, loading, error);
 
   const { data, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useFetchPostsConnectionInfiniteQuery(5);

@@ -1,3 +1,5 @@
+import { gql } from '@apollo/client';
+
 const POST_CONNECTION_QUERY_STRING = `
 query QueryPost($findInput: PaginationFindInput!) {
   posts(findInput: $findInput) {
@@ -93,8 +95,46 @@ const POST_CREATION_MUTATION_STRING = `mutation CreatePost($createPostInput: Cre
     }
   }`;
 
+const POST_ADDED_SUBSCRIPTION = gql`
+  subscription PostAdded {
+    postAdded {
+      content
+      id
+      medias {
+        type
+        uri
+      }
+      privacy
+      createdAt
+      updatedAt
+      isLikedByCurrentUser {
+        type
+        isLiked
+      }
+      user {
+        avatarUrl
+        displayName
+        id
+      }
+      comments {
+        content
+        createdAt
+        id
+      }
+      likes {
+        id
+        type
+        user {
+          id
+        }
+      }
+    }
+  }
+`;
+
 export {
   POST_CONNECTION_QUERY_STRING,
   POST_QUERY_STRING,
   POST_CREATION_MUTATION_STRING,
+  POST_ADDED_SUBSCRIPTION,
 };
