@@ -1,16 +1,35 @@
-import { loginSchema, LoginSchema } from './schema';
-import { useQuery, UseQueryResult } from '@tanstack/react-query';
-import { AuthServices } from './authService';
+import { useEffect } from 'react';
+import { LOGIN_MUTATION_STRING } from '@/services/graphql/graphqlString/login';
+import { useMutation } from '@apollo/client';
+import { storage } from '@/App';
+import { loginResponseSchema } from './schema';
+import usePopup from '@/theme/hooks/usePopup';
+import { useNavigation } from '@react-navigation/core';
+import { Paths } from '@/navigation/paths';
 
-const enum AuthQueryKey {
-  login = 'login',
-}
+export const useLogin = () => {
+  const { showPopup } = usePopup();
+  const navigation: any = useNavigation();
+  const [mutateFunction, { data, loading, error }] = useMutation(
+    LOGIN_MUTATION_STRING,
+  );
 
-export const useLoginquery = (input: LoginSchema): UseQueryResult => {
-  const { username, password, enabled } = loginSchema.parse(input);
-  return useQuery({
-    enabled: enabled,
-    queryFn: () => AuthServices.login(username, password),
-    queryKey: [AuthQueryKey.login, username],
-  });
+  useEffect(() => {
+    if (data) {
+      const { refresh_token, access_token } = loginResponseSchema.parse(
+        data?.login,
+      );
+      storage.set('accessToken', access_token);
+      storage.set('refreshToken', refresh_token);
+      navigation.reset({
+        index: 0,
+        routes: [{ name: Paths.Home }],
+      });
+    }
+    if (error) {
+      showPopup(error.message, () => {});
+    }
+  }, [data, error]);
+
+  return { mutateFunction, data, loading, error };
 };

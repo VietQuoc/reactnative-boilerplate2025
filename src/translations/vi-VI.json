@@ -16,7 +16,12 @@
       "register": "Đăng Ký",
       "loggingin": "Đang đăng nhập...",
       "remember": "Ghi nhớ",
-      "facebook_login": "Login với Facebook"
+      "facebook_login": "Login với Facebook",
+      "username_required": "Username là bắt buộc",
+      "email_invalid": "Email không hợp lệ",
+      "email_required": "Email là bắt buộc",
+      "password_minimum": "Mật khẩu phải có ít nhất 6 ký tự",
+      "password_required": "Mật khẩu là bắt buộc"
     },
     "screen_settings": {
       "select_theme": "Chọn Theme:"

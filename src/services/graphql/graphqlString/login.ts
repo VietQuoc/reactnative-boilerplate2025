@@ -1,20 +1,23 @@
-export const LOGIN_MUTATION_STRING = `
+import { gql } from '@apollo/client';
+
+export const LOGIN_MUTATION_STRING = gql`
   mutation Login($authInput: AuthInput!) {
     login(authInput: $authInput) {
-        access_token
-        refresh_token
-        user {
-          id
-          address
-          avatarUrl
-          displayName
-          email
-          phoneNumber
-          role
-        }
+      access_token
+      refresh_token
+      user {
+        id
+        address
+        avatarUrl
+        displayName
+        email
+        phoneNumber
+        role
+      }
     }
   }
 `;
+
 export const REFRESH_TOKEN_STRING = `
 mutation RefreshToken($authInput: RefreshTokenInput!) {
   refreshToken(authInput: $authInput) {

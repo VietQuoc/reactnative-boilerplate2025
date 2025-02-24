@@ -7,119 +7,126 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from '@/theme';
 import { View } from 'react-native';
 import { LoadingButton } from '@/components/ui/buttons/LoadingButton';
-import { useLoginquery } from '@/hooks/domain/auth/useAuth';
+import { useLogin } from '@/hooks/domain/auth/useAuth';
 import AppLogo from '@/components/ui/images/logo';
 import { FacebookButton } from '@/components/ui/buttons/FacebookButton';
 import { useOrientation, OrientationKey } from '@/hooks/devices/useOrientation';
-import usePopup from '@/theme/hooks/usePopup';
-import { RootScreenProps } from '@/navigation/types';
-import { Paths } from '@/navigation/paths';
-import { useNavigation } from '@react-navigation/native';
+import { Formik } from 'formik';
+import { getLoginSchema } from '@/hooks/domain/auth/schema';
 
 function LoginScreen() {
   const { t } = useTranslation();
-  const navigation: any = useNavigation();
   const { layout, gutters, fonts } = useTheme();
   const orientation = useOrientation();
-  const [password, setPassword] = useState('');
-  const [username, setUsername] = useState('');
   const [checked, setChecked] = useState(false);
-  const { showPopup } = usePopup();
-
-  const { isFetching, refetch } = useLoginquery({
-    username: username,
-    password: password,
-    enabled: false,
-  });
-
-  async function onLogin() {
-    const response: any = await refetch();
-    if (response.isError) {
-      showPopup(response.error.message, () => {});
-    } else {
-      navigation.reset({
-        index: 0,
-        routes: [{ name: Paths.Home }],
-      });
-    }
-  }
+  const loginSchema = getLoginSchema(t);
+  const { mutateFunction, loading } = useLogin();
 
   const isPortrait = orientation === OrientationKey.Portrait;
 
   return (
     <SafeScreen>
-      <Layout
-        style={[
-          layout.fullHeight,
-          layout.itemsCenter,
-          isPortrait ? layout.col : layout.row,
-        ]}>
-        <View
-          style={[
-            isPortrait ? layout.flex_2 : layout.flex_1,
-            layout.justifyCenter,
-            layout.itemsCenter,
-            layout.fullWidth,
-          ]}>
-          <AppLogo sizePercent={0.4} />
-        </View>
-
-        <View style={[layout.flex_3, layout.fullWidth]}>
-          <Card style={[gutters.marginHorizontal_12]}>
-            <Text
+      <Formik
+        initialValues={{ password: '', username: '' }}
+        validationSchema={loginSchema}
+        onSubmit={values =>
+          mutateFunction({
+            variables: {
+              authInput: {
+                password: values.password,
+                username: values.username,
+              },
+            },
+          })
+        }>
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          touched,
+          errors,
+        }) => (
+          <Layout
+            style={[
+              layout.fullHeight,
+              layout.itemsCenter,
+              isPortrait ? layout.col : layout.row,
+            ]}>
+            <View
               style={[
-                fonts.alignCenter,
-                fonts.size_24,
-                fonts.bold,
-                fonts.uppercase,
-                gutters.marginBottom_12,
+                isPortrait ? layout.flex_2 : layout.flex_1,
+                layout.justifyCenter,
+                layout.itemsCenter,
+                layout.fullWidth,
               ]}>
-              {t('screen_login.login')}
-            </Text>
-            <Input
-              value={username}
-              accessoryLeft={props => CustomIcon(props, 'person-outline')}
-              label={evaProps => (
-                <Text {...evaProps}>{t('screen_login.username')}</Text>
-              )}
-              onChangeText={value => setUsername(value)}
-            />
-            <PassInput value={password} setValue={setPassword} />
-            <LoadingButton
-              isLoading={isFetching}
-              defaultText={t('screen_login.login')}
-              loadingText={t('screen_login.loggingin')}
-              onPress={onLogin}
-            />
-            <CheckBox
-              style={[
-                layout.justifyEnd,
-                gutters.marginTop_16,
-                { borderRadius: 16 },
-              ]}
-              checked={checked}
-              onChange={nextChecked => setChecked(nextChecked)}>
-              {t('screen_login.remember')}
-            </CheckBox>
-          </Card>
-        </View>
+              <AppLogo sizePercent={0.4} />
+            </View>
 
-        <View style={[layout.flex_1]}>
-          <FacebookButton
-            loginText={
-              isPortrait
-                ? t('screen_login.facebook_login')
-                : t('common_screen.facebook')
-            }
-            isLoading={false}
-            onPress={() =>
-              showPopup(username, () => {
-                console.log('On close call');
-              })
-            }
-          />
-        </View>
-      </Layout>
+            <View style={[layout.flex_3, layout.fullWidth]}>
+              <Card style={[gutters.marginHorizontal_12]}>
+                <Text
+                  style={[
+                    fonts.alignCenter,
+                    fonts.size_24,
+                    fonts.bold,
+                    fonts.uppercase,
+                    gutters.marginBottom_12,
+                  ]}>
+                  {t('screen_login.login')}
+                </Text>
+                <Input
+                  value={values.username}
+                  accessoryLeft={props => CustomIcon(props, 'person-outline')}
+                  label={evaProps => (
+                    <Text {...evaProps}>{t('screen_login.username')}</Text>
+                  )}
+                  onChangeText={handleChange('username')}
+                  onBlur={handleBlur('username')}
+                />
+                {touched.username && errors.username && (
+                  <Text status="danger">{errors.username}</Text>
+                )}
+                <PassInput
+                  value={values.password}
+                  setValue={handleChange('password')}
+                />
+                {touched.password && errors.password && (
+                  <Text status="danger">{errors.password}</Text>
+                )}
+                <LoadingButton
+                  isLoading={loading}
+                  defaultText={t('screen_login.login')}
+                  loadingText={t('screen_login.loggingin')}
+                  onPress={handleSubmit}
+                />
+                <CheckBox
+                  style={[
+                    layout.justifyEnd,
+                    gutters.marginTop_16,
+                    { borderRadius: 16 },
+                  ]}
+                  checked={checked}
+                  onChange={nextChecked => setChecked(nextChecked)}>
+                  {t('screen_login.remember')}
+                </CheckBox>
+              </Card>
+            </View>
+
+            <View style={[layout.flex_1]}>
+              <FacebookButton
+                loginText={
+                  isPortrait
+                    ? t('screen_login.facebook_login')
+                    : t('common_screen.facebook')
+                }
+                isLoading={false}
+                onPress={() => {}}
+              />
+            </View>
+          </Layout>
+        )}
+      </Formik>
     </SafeScreen>
   );
 }

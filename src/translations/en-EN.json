@@ -16,7 +16,12 @@
       "register": "Register",
       "loggingin": "Logging in...",
       "remember": "Remember Me",
-      "facebook_login": "Login with Facebook"
+      "facebook_login": "Login with Facebook",
+      "username_required": "Username is required",
+      "email_invalid": "Invalid email",
+      "email_required": "Email is required",
+      "password_minimum": "Password at least 6 characters",
+      "password_required": "Password is required"
     },
     "screen_settings": {
       "select_theme": "Select Theme: "

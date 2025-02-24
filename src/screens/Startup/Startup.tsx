@@ -14,7 +14,7 @@ import { useNavigation } from '@react-navigation/native';
 function Startup() {
   const { fonts, gutters, layout } = useTheme();
   const { t } = useTranslation();
-  const navigation = useNavigation();
+  const navigation: any = useNavigation();
 
   const { useFetchCurrentUserQuery } = useUser();
   const { isError, isFetching, isSuccess, error } = useFetchCurrentUserQuery();
@@ -24,7 +24,7 @@ function Startup() {
     if (isSuccess) {
       navigation.reset({
         index: 0,
-        routes: [{ name: Paths.Home }],
+        routes: [{ name: Paths.Login }],
       });
     }
     if (isError) {

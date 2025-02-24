@@ -8,7 +8,7 @@ const propsInput = z.object({
   isLoading: z.boolean(),
   defaultText: z.string(),
   loadingText: z.string(),
-  onPress: z.function(),
+  onPress: z.any(),
 });
 
 type PropsInputType = z.infer<typeof propsInput>;

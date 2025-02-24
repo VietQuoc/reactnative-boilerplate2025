@@ -27,6 +27,7 @@
     "@ui-kitten/eva-icons": "^5.3.1",
     "apollo-link-ws": "^1.0.20",
     "babel-plugin-inline-dotenv": "^1.7.0",
+    "formik": "^2.4.6",
     "graphql": "^16.10.0",
     "graphql-subscriptions": "^3.0.0",
     "graphql-ws": "^6.0.4",
@@ -52,6 +53,7 @@
     "react-native-video": "^6.10.1",
     "react-native-websocket": "^1.0.2",
     "web-streams-polyfill": "^4.1.0",
+    "yup": "^1.6.1",
     "zod": "^3.24.1"
   },
   "devDependencies": {
