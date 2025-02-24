@@ -21,7 +21,28 @@
       "email_invalid": "Email không hợp lệ",
       "email_required": "Email là bắt buộc",
       "password_minimum": "Mật khẩu phải có ít nhất 6 ký tự",
-      "password_required": "Mật khẩu là bắt buộc"
+      "password_required": "Mật khẩu là bắt buộc",
+      "create_new_account": "Tạo tài khoản mới"
+    },
+    "screen_register": {
+      "register": "Đăng Ký",
+      "avatar": "Ảnh đại diện",
+      "avatar_required": "Ảnh đại diện là bắt buộc",
+      "avatar_size_validate": "Kích thước file quá lớn (tối đa {{size}})",
+      "email": "Email",
+      "email_invalid": "Email không hợp lệ",
+      "email_required": "Email là bắt buộc",
+      "password": "Mật Khẩu",
+      "password_minimum": "Mật khẩu phải có ít nhất 6 ký tự",
+      "password_required": "Mật khẩu là bắt buộc",
+      "username": "Tài Khoản",
+      "username_required": "Tài khoản là bắt buộc",
+      "username_minimum": "Tài khoản phải có ít nhất 3 ký tự",
+      "address": "Địa Chỉ",
+      "display_name": "Tên Hiển Thị",
+      "display_name_required": "Tên Hiển Thị là bắt buộc",
+      "phone_number": "Số Điện Thoại",
+      "phone_number_invalid": "Số điện thoại chưa đúng"
     },
     "screen_settings": {
       "select_theme": "Chọn Theme:"

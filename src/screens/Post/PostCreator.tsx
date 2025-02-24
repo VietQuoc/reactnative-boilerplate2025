@@ -1,3 +1,4 @@
+import { BackIcon } from '@/components/ui/icons/CustomIcon';
 import { Privacy } from '@/hooks/domain/post/schema';
 import { PostQueryKey, usePosts } from '@/hooks/domain/post/usePost';
 import { useTheme } from '@/theme';
@@ -28,10 +29,6 @@ import {
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 import Video from 'react-native-video';
-
-const BackIcon = (props: any): IconElement => (
-  <Icon {...props} name="arrow-back" />
-);
 
 const Privacies = Object.values(Privacy);
 

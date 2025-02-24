@@ -21,7 +21,28 @@
       "email_invalid": "Invalid email",
       "email_required": "Email is required",
       "password_minimum": "Password at least 6 characters",
-      "password_required": "Password is required"
+      "password_required": "Password is required",
+      "create_new_account": "Create new account"
+    },
+    "screen_register": {
+      "register": "Register",
+      "avatar": "Avatar",
+      "avatar_required": "Avatar is required",
+      "avatar_size_validate": "File size is too large (max {{size}})",
+      "email": "Email",
+      "email_invalid": "Invalid email",
+      "email_required": "Email is required",
+      "password": "Password",
+      "password_minimum": "Password at least 6 characters",
+      "password_required": "Password is required",
+      "username": "Username",
+      "username_required": "Username is required",
+      "username_minimum": "Username at least 3 characters",
+      "address": "User Address",
+      "display_name": "Display Name",
+      "display_name_required": "Display Name is required",
+      "phone_number": "Phone Number",
+      "phone_number_invalid": "Phone Number is not valid"
     },
     "screen_settings": {
       "select_theme": "Select Theme: "

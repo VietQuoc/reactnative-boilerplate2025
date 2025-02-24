@@ -1,6 +1,7 @@
 import { useTheme } from '@/theme';
 import { Button, Card, Modal, Text } from '@ui-kitten/components';
 import { createContext, useCallback, useState } from 'react';
+import { useWindowDimensions } from 'react-native';
 
 type PopupContextType = {
   showPopup: (message: string, onClose: () => void) => void;
@@ -12,6 +13,7 @@ export const PopupContext = createContext<PopupContextType>({
 
 export function PopupProvider({ children }: any) {
   const { backgrounds } = useTheme();
+  const { height } = useWindowDimensions();
   const [popup, setPopup] = useState({
     visible: false,
     message: '',
@@ -41,7 +43,7 @@ export function PopupProvider({ children }: any) {
         visible={popup.visible}
         backdropStyle={backgrounds.background}
         onBackdropPress={hidePopup}>
-        <Card disabled={true}>
+        <Card style={{ maxHeight: height - 200 }} disabled={true}>
           <Text>{popup.message}</Text>
           <Button onPress={hidePopup}>OK</Button>
         </Card>

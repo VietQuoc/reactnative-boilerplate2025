@@ -1,7 +1,7 @@
 import { SafeScreen } from '@/components/templates';
-import { Input, Text, Card, Layout, CheckBox } from '@ui-kitten/components';
+import { Input, Text, Card, Layout, Button } from '@ui-kitten/components';
 import { CustomIcon } from '@/components/ui/icons/CustomIcon';
-import React, { useState } from 'react';
+import React from 'react';
 import PassInput from '@/components/ui/inputs/PassInput';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '@/theme';
@@ -13,12 +13,14 @@ import { FacebookButton } from '@/components/ui/buttons/FacebookButton';
 import { useOrientation, OrientationKey } from '@/hooks/devices/useOrientation';
 import { Formik } from 'formik';
 import { getLoginSchema } from '@/hooks/domain/auth/schema';
+import { useNavigation } from '@react-navigation/native';
+import { Paths } from '@/navigation/paths';
 
 function LoginScreen() {
   const { t } = useTranslation();
+  const { navigate }: any = useNavigation();
   const { layout, gutters, fonts } = useTheme();
   const orientation = useOrientation();
-  const [checked, setChecked] = useState(false);
   const loginSchema = getLoginSchema(t);
   const { mutateFunction, loading } = useLogin();
 
@@ -100,16 +102,12 @@ function LoginScreen() {
                   loadingText={t('screen_login.loggingin')}
                   onPress={handleSubmit}
                 />
-                <CheckBox
-                  style={[
-                    layout.justifyEnd,
-                    gutters.marginTop_16,
-                    { borderRadius: 16 },
-                  ]}
-                  checked={checked}
-                  onChange={nextChecked => setChecked(nextChecked)}>
-                  {t('screen_login.remember')}
-                </CheckBox>
+                <Button
+                  onPress={() => navigate(Paths.Register)}
+                  appearance="ghost"
+                  style={[gutters.marginTop_3]}>
+                  {t('screen_login.create_new_account')}
+                </Button>
               </Card>
             </View>
 

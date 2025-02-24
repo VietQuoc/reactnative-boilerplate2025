@@ -5,6 +5,8 @@
     "paths": {
       "@/*": ["./src/*"]
     },
+    "allowJs": true,
+    "maxNodeModuleJsDepth": 10,
     "allowImportingTsExtensions": false,
     "module": "esnext",
     "noUnusedLocals": true,
@@ -12,7 +14,7 @@
     "skipLibCheck": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "__mocks__/**/*",

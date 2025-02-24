@@ -24,7 +24,7 @@ function Startup() {
     if (isSuccess) {
       navigation.reset({
         index: 0,
-        routes: [{ name: Paths.Login }],
+        routes: [{ name: Paths.Home }],
       });
     }
     if (isError) {

@@ -18,7 +18,7 @@ const MediaShow = memo(
     const { width, height } = useWindowDimensions();
     const { layout } = useTheme();
     const [currentIndex, setCurrentIndex] = useState(initIndex || 0);
-    console.log('rerender: ', data, initIndex);
+
     const carouselRef = useRef<any>(null);
 
     const [isOpenGallery, setIsOpenGallery] = useState({

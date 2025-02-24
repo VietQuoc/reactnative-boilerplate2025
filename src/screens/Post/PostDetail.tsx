@@ -125,8 +125,8 @@ function PostDetailScreen(props: any) {
   return (
     <Layout level="1" style={[layout.flex_1]}>
       <PostComponentHeader
-        avatarUrl={userData.avatarUrl}
-        displayName={userData.displayName}
+        avatarUrl={data?.user?.avatarUrl}
+        displayName={data?.user?.displayName}
         createdAt={data?.createdAt || ''}
         privacy={data?.privacy || Privacy.PRIVATE}
         isCard={false}

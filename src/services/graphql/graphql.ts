@@ -110,7 +110,6 @@ export const callGraphqlWithUpload = async (
         name: item.fileName,
       });
     });
-    console.log('formData: ', formData);
 
     let postCall = await instance.post('graphql', {
       headers: headers ?? [],

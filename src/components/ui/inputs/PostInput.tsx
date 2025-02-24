@@ -25,7 +25,8 @@ const PostInput = memo((props: { style?: Readonly<ViewProps> | any }) => {
   const { useFetchCurrentUserQuery } = useUser();
   const { data } = useFetchCurrentUserQuery();
   const { t } = useTranslation();
-
+  console.log(data);
+  if (!data) return null;
   return (
     <Animated.View style={props.style}>
       <View
