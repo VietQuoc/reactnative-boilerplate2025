@@ -3,7 +3,7 @@ import { usePosts } from '@/hooks/domain/post/usePost';
 import { useTheme } from '@/theme';
 import { Layout, Spinner } from '@ui-kitten/components';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, View } from 'react-native';
+import { Animated, Platform, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import PostComponent from './components/PostComponent';
 import { COMMENT_BOX_HEIGHT } from '@/components/comment/CommentBox';
@@ -72,7 +72,7 @@ function PostScreen() {
       <PostInput
         style={[
           layout.absolute,
-          { top: 60, zIndex: 1, width: '100%' },
+          { top: Platform.OS === 'android' ? 0 : 60, zIndex: 1, width: '100%' },
           { opacity },
         ]}
       />

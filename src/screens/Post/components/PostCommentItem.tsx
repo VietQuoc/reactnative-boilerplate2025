@@ -9,7 +9,7 @@ const PostCommentItem = memo(({ item }: { item: CommentSchemaType }) => {
       description={item.content}
       accessoryLeft={props => (
         <Avatar
-          resizeMode="none"
+          resizeMode="contain"
           source={{ uri: item.user.avatarUrl }}
           style={{ alignSelf: 'flex-start' }}
         />
